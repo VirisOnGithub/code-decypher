@@ -1,0 +1,10 @@
+h1{
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+#french, #code{
+    resize: none;
+    width: 49vw;
+    height: 50vh;
+}
