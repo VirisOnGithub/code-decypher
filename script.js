@@ -34,7 +34,7 @@
             //Fonction pour passer aux caractère normaux
             function transformHyphensAndDots() {
                 document.getElementById('code').addEventListener('keypress', function(event) {
-                    var char = String.fromCharCode(event.which);
+                    var char = String.fromCharCode(event);
                     if (char !== '.' && char !== '_') {
                         event.preventDefault();
                     }
