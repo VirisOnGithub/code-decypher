@@ -31,6 +31,17 @@
                 document.getElementById('french').value = output;
             }
 
+            //Fonction pour passer aux caractère normaux
+            function transformHyphensAndDots() {
+                document.getElementById('code').addEventListener('keypress', function(event) {
+                    var char = String.fromCharCode(event.which);
+                    if (char !== '.' && char !== '_') {
+                        event.preventDefault();
+                    }
+                });
+                translateToFrench();
+            }
+
             // Ajout de l'écouteur d'événements
             document.getElementById('french').addEventListener('input', translateToMorse);
-            document.getElementById('code').addEventListener('input', translateToFrench);
+            document.getElementById('code').addEventListener('keypress', transformHyphensAndDots);
