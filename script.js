@@ -10,7 +10,7 @@
                 for (let i = 0; i < input.length; i++) {
                     output += morseCodeDict[input[i]] + ' ';
                 }
-                document·getElementById('code').value = output;
+                document.getElementById('code').value = output;
             }
 
             function translateToFrench() {
