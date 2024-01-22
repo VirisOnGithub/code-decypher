@@ -32,19 +32,18 @@
             }
 
             //Fonction pour passer aux caractère normaux
-            function transformHyphensAndDots() {
-                let code = document.getElementById('code');
-                code.addEventListener('keypress', function(event) {
-                    var char = event.key;
-                    if (char === '.') {
-                        code.value += '·';
-                    } else if (char === '-' || char === '_') {
-                        code.value += '−';
+            function transformHyphensAndDots(event) {
+                document.getElementById('code').addEventListener('input', function(event) {
+                    var char = String(event.key)
+                    console.log(char)
+                    if (char !== '.' && char !== '_') {
+                        event.preventDefault();
                     }
                 });
                 translateToFrench();
             }
 
+            document.getElementById('code').addEventListener('input', transformHyphensAndDots);
+
             // Ajout de l'écouteur d'événements
             document.getElementById('french').addEventListener('input', translateToMorse);
-            document.getElementById('code').addEventListener('keypress', transformHyphensAndDots);
