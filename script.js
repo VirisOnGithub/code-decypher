@@ -33,13 +33,7 @@
 
             //Fonction pour passer aux caractère normaux
             function transformHyphensAndDots(event) {
-                document.getElementById('code').addEventListener('input', function(event) {
-                    var char = String(event.key)
-                    console.log(char)
-                    if (char !== '.' && char !== '_') {
-                        event.preventDefault();
-                    }
-                });
+                document.getElementById('code').value = event.target.value.replace(/-/g, '−').replace(/\./g, '·');
                 translateToFrench();
             }
 
@@ -47,3 +41,64 @@
 
             // Ajout de l'écouteur d'événements
             document.getElementById('french').addEventListener('input', translateToMorse);
+
+//CESAR CODE
+            let selectedCode = 'morse'
+            
+            function cesarSelect() {
+                document.querySelector('.cesaroptions').style.display = 'block';
+                selectedCode = 'cesar';
+            }
+
+            function morseSelect() {
+                document.querySelector('.cesaroptions').style.display = 'none';
+                selectedCode = 'morse';
+            }
+
+            function cesarEncode() {
+                const input = document.getElementById('french').value.toUpperCase();
+                const output = document.getElementById('code');
+                const shift = parseInt(document.getElementById('cesaroptions').value)%26;
+                output.value = cesarEncodeText(input, shift);
+            }
+
+            function cesarDecode() {
+                const input = document.getElementById('code').value.toUpperCase();
+                const output = document.getElementById('french');
+                const shift = parseInt(document.getElementById('cesaroptions').value)%26;
+                output.value = cesarDecodeText(input, shift);
+            }
+
+            function cesarEncodeText(input, shift) {
+                let output = '';
+                for (let i = 0; i < input.length; i++) {
+                    output += cesarEncodeLetter(input[i], shift);
+                }
+                return output;
+            }
+
+            function cesarDecodeText(input, shift) {
+                let output = '';
+                for (let i = 0; i < input.length; i++) {
+                    output += cesarDecodeLetter(input[i], shift);
+                }
+                return output;
+            }
+
+            function cesarEncodeLetter(letter, shift) {
+                const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                const index = alphabet.indexOf(letter);
+                if (index === -1) {
+                    return letter;
+                }
+                return alphabet[(index + shift) % 26];
+            }
+
+            function cesarDecodeLetter(letter, shift) {
+                const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                const index = alphabet.indexOf(letter);
+                if (index === -1) {
+                    return letter;
+                }
+                return alphabet[(index - shift + 26) % 26];
+            }

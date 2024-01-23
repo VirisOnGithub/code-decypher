@@ -8,8 +8,37 @@
     </head>
     <body>
         <h1>Décodeur</h1>
-        <textarea name="french" id="french"></textarea>
-        <textarea name="code" id="code"></textarea>
+        <div class="translatearea">
+            <div class="translate">
+                <div class="languages"></div>
+                <textarea name="french" id="french"></textarea>
+            </div>
+            <div class="translate">
+                <div class="languages">
+                    <div class="language">
+                        <input type="radio" name="language" id="morse" value="morse" onchange="morseSelect()" checked aria-checked="true">
+                        <label for="morse">Morse</label>
+                    </div>
+                    <div class="language">
+                        <input type="radio" name="language" id="cesar" value="cesar" onchange="cesarSelect()">
+                        <label for="cesar">César</label>
+                    </div>
+                    <div class="cesaroptions">
+                        <input 
+                            type="number" 
+                            name="decal" 
+                            id="decal" 
+                            placeholder="Décalage" 
+                            ondrop="return false;" 
+                            onpaste="return false;"
+                            onkeypress="return event.charCode>=48 && event.charCode<=57" 
+                            required
+                        />
+                    </div>
+                </div>
+                <textarea name="code" id="code"></textarea>
+            </div>
+        </div>
 
         <script src="./script.js"></script>
     </body>
